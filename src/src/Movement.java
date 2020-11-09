@@ -17,32 +17,39 @@ public class Movement {
 
 		Square squareDestination = board.getSquare(destination);
 
-		if (squareDestination.isEmpty()) {
-			squareDestination.removePiece();
-			squareDestination.setPiece(squareOrigin.getPiece());
-			squareOrigin.removePiece();
-			return MatchResult.EMPTY_SQUARE;
-		}
-
 		if (!squareDestination.isEmpty() 
 		&& squareOrigin.getPiece().getColor() == squareDestination.getPiece().getColor()) {
 			
 			return MatchResult.INVALID;
 			
 		} 
-		
-		if (squareDestination.getPiece().isKing()) {
-			return MatchResult.CHECKMATE;
-		} 
 
 		if (!squareOrigin.getPiece().isValidMove(origin, destination)) {
 			return MatchResult.INVALID;
 		} else {
 			
-			squareDestination.removePiece();
-			squareDestination.setPiece(squareOrigin.getPiece());
-			squareOrigin.removePiece();
-			return MatchResult.CAPTURE;
+			if (squareDestination.isEmpty()) {
+				squareDestination.removePiece();
+				squareDestination.setPiece(squareOrigin.getPiece());
+				squareOrigin.removePiece();
+				return MatchResult.EMPTY_SQUARE;
+			} else {
+				
+				if (squareDestination.getPiece().isKing()) {
+					return MatchResult.CHECKMATE;
+				} else {
+					
+					squareDestination.removePiece();
+					squareDestination.setPiece(squareOrigin.getPiece());
+					squareOrigin.removePiece();
+					return MatchResult.CAPTURE;
+					
+				}
+				
+			}	
+			
+			
+			
 		}
 		
 	}

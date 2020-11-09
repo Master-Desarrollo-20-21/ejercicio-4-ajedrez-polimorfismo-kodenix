@@ -30,7 +30,8 @@ public class King extends Piece {
 	
 	@Override
 	public boolean isValidMove(Coordinate origin, Coordinate destination) {
-		return true;
+		return RuleMove.isHorizontalOneStep(origin, destination) || RuleMove.isVerticalOneStep(origin, destination)
+				|| RuleMove.isDiagonalOneStep(origin, destination);
 	}
 
 	@Override
