@@ -36,7 +36,7 @@ public class Rook extends Piece {
 	
 	@Override
 	public boolean isValidRuleMove(Coordinate origin, Coordinate destination) {
-		return RuleMove.isHorizontal(origin, destination) || RuleMove.isVertical(origin, destination);
+		return origin.isHorizontalDirection(destination) || origin.isVerticalDirection(destination);
 	}
 	
 	

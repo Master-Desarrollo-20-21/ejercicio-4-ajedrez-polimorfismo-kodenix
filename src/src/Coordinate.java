@@ -40,6 +40,8 @@ public class Coordinate {
 		String column = Coordinate.columnsSimbol.get(this.getColumn());
 		return row+column;
 	}
+	
+	
 
 	
 	private static int rowPositionForSearch;
@@ -84,6 +86,39 @@ public class Coordinate {
 		columnsSimbol.put(5, "f");
 		columnsSimbol.put(6, "g");
 		columnsSimbol.put(7, "h");
+		
+	}
+
+	public boolean isVerticalDirection(Coordinate coordinate) {
+		return this.row == coordinate.getRow();
+	}
+	
+	public boolean isVerticalDirectionOneStep(Coordinate destination) {
+		int diferencieSteps = Math.abs(this.row - destination.getRow()); 
+		return this.isVerticalDirection(destination) &&  diferencieSteps == 1 ;
+	}
+	
+	public boolean isHorizontalDirection(Coordinate coordinate) {
+		return this.column == coordinate.getColumn();
+	}
+	
+	public boolean isHorizontalDirectionOneStep(Coordinate destination) {
+		int diferencieSteps = Math.abs(this.column - destination.getColumn()); 
+		return this.isHorizontalDirection(destination) &&  diferencieSteps == 1 ;
+	}
+
+	public boolean isDiagonalDirection(Coordinate destination) {
+		int destinationRow = destination.getRow();
+		int destinationColumn = destination.getColumn();
+		
+		return this.row + this.column == destinationRow + destinationColumn || 
+				this.row - this.column == destinationRow - destinationColumn;
+		
+	}
+	
+	public boolean isDiagonalDirectionOneStep(Coordinate destination) {
+		int diferencieSteps = Math.abs(this.row - destination.getRow()); 
+		return this.isDiagonalDirection(destination) &&  diferencieSteps == 1 ;
 		
 	}
 	

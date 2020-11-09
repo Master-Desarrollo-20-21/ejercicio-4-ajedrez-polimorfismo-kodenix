@@ -32,7 +32,7 @@ public class Bishop extends Piece {
 	
 	@Override
 	public boolean isValidRuleMove(Coordinate origin, Coordinate destination) {
-		return RuleMove.isDiagonal(origin, destination);
+		return origin.isDiagonalDirection(destination);
 	}
 	
 	

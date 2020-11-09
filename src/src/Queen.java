@@ -31,8 +31,8 @@ public class Queen extends Piece {
 	
 	@Override
 	public boolean isValidRuleMove(Coordinate origin, Coordinate destination) {
-		return RuleMove.isHorizontal(origin, destination) || RuleMove.isVertical(origin, destination)
-				|| RuleMove.isDiagonal(origin, destination);
+		return origin.isHorizontalDirection(destination) || origin.isVerticalDirection(destination) ||
+				origin.isDiagonalDirection(destination);
 	}
 	
 	

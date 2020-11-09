@@ -48,7 +48,7 @@ public class Pawn extends Piece {
 	
 	@Override
 	public boolean isValidRuleMove(Coordinate origin, Coordinate destination) {
-		return RuleMove.isHorizontalOneStep(origin, destination) || RuleMove.isVerticalOneStep(origin, destination);
+		return origin.isVerticalDirectionOneStep(destination);
 	}
 	
 	
