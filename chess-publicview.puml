@@ -1,0 +1,110 @@
+@startuml ChessPublicView_v1
+
+	title Chess Public View V1.0.0
+
+	class Chess {
+		-Player[2] players
+		-int turn
+		-Board board
+		+play()
+	}
+
+	/'class Turn {
+		-int currentPlayer;
+		+Turn()
+		+void next()
+		+int getCurrentPLayerNumber()
+	}'/
+
+	class Player {
+		-Color color
+		-boolean winner
+		+Player(Color color, Board board)
+		+boolean isWinner()
+		+Color getColor()
+		+void movePiece(Coordinate origin, Coordinate destination)
+	}
+
+	enum Color {
+		BLACK
+		WHITE
+	}
+
+	class Board {
+		-Square[8][8] squares
+		+Board(Piece[] pieces)
+		-void placePiecesOnSquare(Piece[] pieces)
+		+Square getSquare(Coordinate coordinate)
+		+void show()
+		+MatchResult movePiece(Coordinate origin, Coordinate destination)
+	}
+
+	class Piece {
+		-Player owner
+		+Piece(Player owner)
+		+Player getOwner()
+		#Coordinate[] getDefaultCoordinates()
+	}
+
+	class King extends Piece {
+		#void setInitialCoordinate()
+	}
+
+	class Rook extends Piece {
+		#void setInitialCoordinate()
+	}
+
+	class Queen extends Piece {
+		#void setInitialCoordinate()
+	}
+
+	class Coordinate {
+		+Coordinate(int rowNumber, int columnNumber)
+		+int getRowNumber()
+		+int getColumNumber()
+	}
+
+	class Square {
+		-Coordinate coordinate
+		-Piece piece
+		+Square(Coordinate coordinate)
+		+Square(Coordinate coordinate, Piece piece)
+		+void removePiece()
+		+void setPiece(Piece piece)
+		+boolean isEmpty()
+		+Piece getPiece()
+	}
+
+	class Movement {
+		+Movement(Coordinate origin, Coordinate destination)
+		+MatchResult getResult()
+	}
+
+	class MatchResult {
+		+boolean getType()
+		+boolean isEmpty()
+		+boolean isCheckmate()
+	}
+
+	
+
+
+	Chess *--> "1" Board
+	'Chess *--> "1" Turn
+	Chess *--> "2" Player
+
+	Player --> Board
+	Player o--> Color
+	Player --> Coordinate
+	Board o--> "64" Square
+	Square o--> "0..1" Piece
+	Square o--> "1" Coordinate
+	Piece --> Coordinate
+	Player ..> Movement
+	Movement *--> MatchResult
+	Movement --> Board
+
+
+	
+
+@enduml

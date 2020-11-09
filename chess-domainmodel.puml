@@ -1,0 +1,133 @@
+@startuml ChessDomainModel_v1_0_1
+
+	title Chess Domain Model Version 1.0.1
+
+	class Chess
+	
+	
+	
+    class Square
+	class Empty
+	class Opponent
+    
+    class Coordinate
+    
+	together {
+		class Player	
+		class RuleMove
+	
+	}
+	
+		class Board
+		class Piece
+		
+	
+
+	
+		class Movement
+		class Turn
+		class RuleMove
+	
+	
+	class Pawn
+	class Rook
+	class Knight
+	class Bishop
+	class Queen
+	class King
+	class Color
+	class White
+	class Black
+	
+	
+	class Checkmate
+	class Capture
+
+	class Target
+	class Steps
+	class TypeStep
+	class OneStep
+	class Forward
+	class Backward
+	class ManySteps
+	class Destination
+	class Checkmate
+
+	Chess *--> "1" Turn
+	Chess *--> Board
+	Chess *--> "2" Player
+	Turn --> "1" Player
+
+    Board *--> "8x8" Square
+
+	Player ..> "*" Movement
+	Player o--> Color
+	Player o--> "16" Piece
+	Player --> Destination
+	Player --> Board
+
+	/'Player *-- King
+	Player *-- Queen
+	Player *-- "2" Bishop
+	Player *-- "2" Knight
+	Player *-- "2" Rook
+	Player *-- "8" Pawn
+	'/
+	Player --> Target
+	Target --> Checkmate
+
+	Color <|-- White
+	Color <|-- Black
+
+	Piece *--> "1..*" RuleMove
+	Piece <|-- Pawn
+	Piece <|-- Bishop
+	Piece <|-- Knight
+	Piece <|-- Rook
+	Piece <|-- Queen
+	Piece <|-- King
+
+	Piece --> Color
+
+	Movement ..> Turn : change
+	Movement ..> "To" Destination
+    Movement ..> "From" Square
+	Movement --> Piece
+	Movement o--> MatchResult
+	Movement --> Board
+
+	MatchResult ^-- Checkmate
+	MatchResult ^-- Capture
+	Checkmate ..>  Opponent : "is King"
+	Capture ..>  Opponent : "is other Piece"
+
+	Square o--> "0..1" Piece
+    Square <|-- Destination
+    Square *--> Coordinate
+
+	Coordinate *--> Row
+	Coordinate *--> Column
+
+	Destination <|-- Empty
+	Destination <|-- Opponent
+	'Opponent <|-- Target
+	'Target --> King	
+
+	RuleMove <|-- Horizontal
+	RuleMove <|-- Vertical
+	RuleMove <|-- Diagonal
+	RuleMove <|-- L
+
+	
+	Steps *--> TypeStep
+	TypeStep ^-- OneStep
+		OneStep ^-- Forward
+		OneStep ^-- Backward
+	TypeStep ^-- ManySteps
+	Steps ^-- Horizontal
+	Steps ^-- Vertical
+	Steps ^-- Diagonal
+
+	
+
+@enduml
