@@ -47,7 +47,7 @@ class Chess {
 	}
 
 	private Piece[] generatePieces(Player[] players) {
-		Piece[] allPieces = new Piece[28];
+		Piece[] allPieces = new Piece[32];
 	
 		allPieces[0] = new Rook(players[0]);
 		allPieces[1] = new Rook(players[0]);
@@ -82,6 +82,12 @@ class Chess {
 		
 		allPieces[26] = new Bishop(players[1]);
 		allPieces[27] = new Bishop(players[1]);
+		
+		allPieces[28] = new Knight(players[0]);
+		allPieces[29] = new Knight(players[0]);
+		
+		allPieces[30] = new Knight(players[1]);
+		allPieces[31] = new Knight(players[1]);
 		
 		
 		return allPieces;
