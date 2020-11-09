@@ -19,7 +19,7 @@ public class Queen extends Piece {
 		
 		Coordinate[] coordinates = new Coordinate[1];
  		
-		if (this.getPlayer().getColor() == Color.WHITE) {
+		if (this.getColor() == Color.WHITE) {
 			coordinates[0] = new Coordinate('1', 'd');
 		} else {
 			coordinates[0] = new Coordinate('8', 'd');
@@ -27,6 +27,11 @@ public class Queen extends Piece {
 		
 		return coordinates;
 		
+	}
+	
+	@Override
+	public boolean isValidMove(Coordinate origin, Coordinate destination) {
+		return true;
 	}
 	
 	

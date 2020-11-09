@@ -2,3 +2,5 @@
 ## Java
 ##############################
 *.class
+*.project
+*.classpath

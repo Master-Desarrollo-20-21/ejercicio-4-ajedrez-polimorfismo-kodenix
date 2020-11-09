@@ -1,14 +1,18 @@
 
 public class Movement {
 
+	private Coordinate origin;
+	private Coordinate destination;
 
-	private MatchResult matchResult;
+	public Movement(Coordinate origin, Coordinate destination) {
+		this.origin = origin;
+		this.destination = destination;
+	}
 
-	public Movement(Coordinate origin, Coordinate destination, Board board, Player player) {
+	public MatchResult complete(Board board, Color colorPlayer) {
 		Square squareOrigin = board.getSquare(origin);
-		if (squareOrigin.isEmpty() || squareOrigin.getPiece().getPlayer().getColor() != player.getColor()) {
-			this.matchResult = MatchResult.INVALID;
-			return;
+		if (squareOrigin.isEmpty() || squareOrigin.getPiece().getColor() != colorPlayer) {
+			return MatchResult.INVALID;
 		}
 
 		Square squareDestination = board.getSquare(destination);
@@ -17,33 +21,30 @@ public class Movement {
 			squareDestination.removePiece();
 			squareDestination.setPiece(squareOrigin.getPiece());
 			squareOrigin.removePiece();
-			this.matchResult = MatchResult.EMPTY_SQUARE;
-			return;
+			return MatchResult.EMPTY_SQUARE;
 		}
 
 		if (!squareDestination.isEmpty() 
-		&& squareOrigin.getPiece().getPlayer().getColor() == squareDestination.getPiece().getPlayer().getColor()) {
+		&& squareOrigin.getPiece().getColor() == squareDestination.getPiece().getColor()) {
 			
-			this.matchResult = MatchResult.INVALID;
-			return;
+			return MatchResult.INVALID;
+			
+		} 
+		
+		if (squareDestination.getPiece().isKing()) {
+			return MatchResult.CHECKMATE;
 		} 
 
-		if (!squareOrigin.getPiece().isValidDestination(destination)) {
-			this.matchResult = MatchResult.INVALID;
-			return;
+		if (!squareOrigin.getPiece().isValidMove(origin, destination)) {
+			return MatchResult.INVALID;
 		} else {
-
+			
 			squareDestination.removePiece();
 			squareDestination.setPiece(squareOrigin.getPiece());
 			squareOrigin.removePiece();
+			return MatchResult.CAPTURE;
 		}
-
 		
-	}
-
-	public MatchResult getResult() {
-		// TODO Auto-generated method stub
-		return this.matchResult;
 	}
 
 }

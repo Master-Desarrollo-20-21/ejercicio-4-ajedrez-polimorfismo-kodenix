@@ -9,18 +9,19 @@ public abstract class Piece {
 		this.player = player;
 	}
 	
+	public abstract Coordinate[] getDefaultCoordinates();
+	public abstract boolean isValidMove(Coordinate origin, Coordinate destination);
+	
 	protected void setUnicodePiece(String unicodePiece) {
 		this.unicodePiece = unicodePiece;
 	}
 	
-	public String getFigure() {
-		return this.unicodePiece;
+	protected boolean isKing() {
+		return false;
 	}
 	
-	public abstract Coordinate[] getDefaultCoordinates();
-
-	protected Player getPlayer() {
-		return player;
+	public String getFigure() {
+		return this.unicodePiece;
 	}
 	
 	public boolean isPlacedOnboard() {
@@ -30,9 +31,10 @@ public abstract class Piece {
 	public void setOnBoard() {
 		this.placedOnBoard = true;
 	}
-
-	public boolean isValidDestination(Coordinate destination) {
-		return true;
+	
+	public Color getColor() {
+		return this.player.getColor();
 	}
+
 
 }

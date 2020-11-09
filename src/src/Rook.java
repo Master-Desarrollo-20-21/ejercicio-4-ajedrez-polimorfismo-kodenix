@@ -19,7 +19,7 @@ public class Rook extends Piece {
 		
 		Coordinate[] coordinates = new Coordinate[2];
  		
-		if (this.getPlayer().getColor() == Color.WHITE) {
+		if (this.getColor() == Color.WHITE) {
 			
 			coordinates[0] = new Coordinate('1', 'a');
 			coordinates[1] = new Coordinate('1', 'h');
@@ -32,6 +32,11 @@ public class Rook extends Piece {
 		}
 		
 		return coordinates;
+	}
+	
+	@Override
+	public boolean isValidMove(Coordinate origin, Coordinate destination) {
+		return true;
 	}
 	
 	

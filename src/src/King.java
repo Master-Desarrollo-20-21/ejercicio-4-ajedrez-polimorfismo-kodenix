@@ -19,13 +19,23 @@ public class King extends Piece {
 		
 		Coordinate[] coordinates = new Coordinate[1];
  		
-		if (this.getPlayer().getColor() == Color.WHITE) {
+		if (this.getColor() == Color.WHITE) {
 			coordinates[0] = new Coordinate('1', 'e');
 		} else {
 			coordinates[0] = new Coordinate('8', 'e');
 		}
 		
 		return coordinates;
+	}
+	
+	@Override
+	public boolean isValidMove(Coordinate origin, Coordinate destination) {
+		return true;
+	}
+
+	@Override
+	protected boolean isKing() {
+		return true;
 	}
 	
 	

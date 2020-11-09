@@ -24,8 +24,13 @@ class Chess {
 			Player currentPlayer = this.players[turn];
 			System.out.println("Turn for Player: " + currentPlayer.getColor());
 			board.show();
-			currentPlayer.makeMove();
-			this.changeTurn();
+			currentPlayer.makeMove(board);
+			
+			if (currentPlayer.isWinner()) {
+				System.out.println("Player "+ currentPlayer.getColor() + " is Winner!!");
+			} else {
+				this.changeTurn();
+			}
 		} while (!this.players[this.turn].isWinner());
 		
 		
@@ -56,8 +61,8 @@ class Chess {
 
 	private Player[] initializePlayers(Board board) {
 		Player[] players = new Player[2];
-		players[0] = new Player(Color.WHITE, board);
-		players[1] = new Player(Color.BLACK, board);
+		players[0] = new Player(Color.WHITE);
+		players[1] = new Player(Color.BLACK);
 		return players;
 	}
 	
