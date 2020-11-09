@@ -19,7 +19,10 @@ class Chess {
 	}
 	
 	public void play() {
-		
+		System.out.println("=====================================");
+		System.out.println("---------------Chess!!!--------------");
+		System.out.println("=====================================");
+		System.out.println("[[ Example coordinate: 5c, 1a, not CamelCase ]]");
 		do {
 			Player currentPlayer = this.players[turn];
 			System.out.println("Turn for Player: " + currentPlayer.getColor());
@@ -44,17 +47,37 @@ class Chess {
 	}
 
 	private Piece[] generatePieces(Player[] players) {
-		Piece[] allPieces = new Piece[8];
+		Piece[] allPieces = new Piece[24];
 	
 		allPieces[0] = new Rook(players[0]);
 		allPieces[1] = new Rook(players[0]);
 		allPieces[2] = new Queen(players[0]);
 		allPieces[3] = new King(players[0]);
 		
-		allPieces[4] = new Rook(players[1]);
-		allPieces[5] = new Rook(players[1]);
-		allPieces[6] = new Queen(players[1]);
-		allPieces[7] = new King(players[1]);
+		allPieces[4] = new Pawn(players[0]);
+		allPieces[5] = new Pawn(players[0]);
+		allPieces[6] = new Pawn(players[0]);
+		allPieces[7] = new Pawn(players[0]);
+		allPieces[8] = new Pawn(players[0]);
+		allPieces[9] = new Pawn(players[0]);
+		allPieces[10] = new Pawn(players[0]);
+		allPieces[11] = new Pawn(players[0]);
+		
+		allPieces[12] = new Rook(players[1]);
+		allPieces[13] = new Rook(players[1]);
+		allPieces[14] = new Queen(players[1]);
+		allPieces[15] = new King(players[1]);
+		
+		allPieces[16] = new Pawn(players[1]);
+		allPieces[17] = new Pawn(players[1]);
+		allPieces[18] = new Pawn(players[1]);
+		allPieces[19] = new Pawn(players[1]);
+		allPieces[20] = new Pawn(players[1]);
+		allPieces[21] = new Pawn(players[1]);
+		allPieces[22] = new Pawn(players[1]);
+		allPieces[23] = new Pawn(players[1]);
+		
+		
 		
 		return allPieces;
 	}
