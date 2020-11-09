@@ -29,7 +29,7 @@ public class King extends Piece {
 	}
 	
 	@Override
-	public boolean isValidMove(Coordinate origin, Coordinate destination) {
+	public boolean isValidRuleMove(Coordinate origin, Coordinate destination) {
 		return RuleMove.isHorizontalOneStep(origin, destination) || RuleMove.isVerticalOneStep(origin, destination)
 				|| RuleMove.isDiagonalOneStep(origin, destination);
 	}

@@ -31,7 +31,7 @@ public class Knight extends Piece {
 	}
 	
 	@Override
-	public boolean isValidMove(Coordinate origin, Coordinate destination) {
+	public boolean isValidRuleMove(Coordinate origin, Coordinate destination) {
 		return true;
 	}
 	

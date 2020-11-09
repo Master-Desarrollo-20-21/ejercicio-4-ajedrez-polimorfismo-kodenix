@@ -24,7 +24,7 @@ public class Movement {
 			
 		} 
 
-		if (!squareOrigin.getPiece().isValidMove(origin, destination)) {
+		if (!squareOrigin.getPiece().isValidRuleMove(origin, destination)) {
 			return MatchResult.INVALID;
 		} else {
 			
