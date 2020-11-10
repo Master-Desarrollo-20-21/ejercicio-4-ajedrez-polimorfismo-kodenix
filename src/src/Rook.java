@@ -4,11 +4,11 @@ public class Rook extends Piece {
 	public static final String UNICODE_PIECE_WHITE = "\u2656";
 	public static final String UNICODE_PIECE_BLACK = "\u265C";
 	
-	Rook(Player player) {
-		super(player);
+	Rook(Color color) {
+		super(color);
 		
 		String unicodePiece = Rook.UNICODE_PIECE_WHITE;
-		if (player.getColor() == Color.BLACK) {
+		if (color == Color.BLACK) {
 			unicodePiece = Rook.UNICODE_PIECE_BLACK;
 		}
 		this.setUnicodePiece(unicodePiece);

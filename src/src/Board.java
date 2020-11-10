@@ -1,3 +1,4 @@
+import java.util.Map;
 
 public class Board {
 	
@@ -7,8 +8,26 @@ public class Board {
 		this.generateSquares();
 	}
 
-	public void placePieces(Piece[] pieces) {
-		this.placePiecesOnSquare(pieces);
+	public void placePieces(Map<Color, Piece[]> pieces) {
+		
+		for (Color color: pieces.keySet()) {
+			
+			Piece[] pieceColection = pieces.get(color);
+			
+			for (int i=0; i < pieceColection.length; i++) {
+				Coordinate[] coordinates = pieceColection[i].getDefaultCoordinates();
+				
+				for (int j=0; j < coordinates.length; j++) {
+					Square square = this.getSquare(coordinates[j]);
+					if (!pieceColection[i].isPlacedOnboard() && square.isEmpty()) {
+						square.setPiece(pieceColection[i]);
+					}
+				}
+			}
+			
+		}
+		
+		
 	}
 
 	private void generateSquares() {
@@ -19,19 +38,7 @@ public class Board {
 			}
 		}
 		
-	}
-	
-	private void placePiecesOnSquare(Piece[] pieces) {
-		for (int i=0; i < pieces.length; i++) {
-			Coordinate[] coordinates = pieces[i].getDefaultCoordinates();
-			for (int j=0; j < coordinates.length; j++) {
-				Square square = this.getSquare(coordinates[j]);
-				if (!pieces[i].isPlacedOnboard() && square.isEmpty()) {
-					square.setPiece(pieces[i]);
-				}
-			}
-		}		
-	}
+	}		
 	
 	public Square getSquare(Coordinate coordinate) {
 		return this.squares[coordinate.getRow()][coordinate.getColumn()];
@@ -47,8 +54,6 @@ public class Board {
 				
 				Square square = squares[i][j];
 				if (square.isEmpty()) {
-					//System.out.print("  ");
-					// square.printCoordinate();
 					System.out.print("  ");
 				} else {
 					System.out.print(square.getPiece().getFigure());

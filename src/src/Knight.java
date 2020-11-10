@@ -4,11 +4,11 @@ public class Knight extends Piece {
 	public static final String UNICODE_PIECE_WHITE = "\u2658";
 	public static final String UNICODE_PIECE_BLACK = "\u265E";
 	
-	Knight(Player player) {
-		super(player);
+	Knight(Color color) {
+		super(color);
 		
 		String unicodePiece = Knight.UNICODE_PIECE_WHITE;
-		if (player.getColor() == Color.BLACK) {
+		if (color == Color.BLACK) {
 			unicodePiece = Knight.UNICODE_PIECE_BLACK;
 		}
 		this.setUnicodePiece(unicodePiece);

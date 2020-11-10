@@ -1,9 +1,9 @@
+import java.util.HashMap;
+import java.util.Map;
 
 class Chess {
 	
-	final int NUMBERS_PIECE_ROOK = 2;
-	final int NUMBERS_PIECE_QUEEN = 1;
-	final int NUMBERS_PIECE_KING = 1;
+	private static final int TOTAL_PIECE_FOR_PLAYER = 16;
 	
 	private Player[] players = new Player[2];
 	private Board board;
@@ -13,7 +13,7 @@ class Chess {
 		this.turn = 0;
 		this.board = new Board();
 		this.players = this.initializePlayers(board);
-		Piece[] pieces = this.generatePieces(this.players);
+		Map<Color, Piece[]> pieces = this.createPieces();
 		board.placePieces(pieces);
 		
 	}
@@ -46,51 +46,24 @@ class Chess {
 		
 	}
 
-	private Piece[] generatePieces(Player[] players) {
-		Piece[] allPieces = new Piece[32];
+	private Map<Color, Piece[]> createPieces() {
+		
+		Map<Color, Piece[]> colorWithPieces = new HashMap<Color, Piece[]>();
 	
-		allPieces[0] = new Rook(players[0]);
-		allPieces[1] = new Rook(players[0]);
-		allPieces[2] = new Queen(players[0]);
-		allPieces[3] = new King(players[0]);
+		for (Color color: Color.values()) {
+			
+			Piece[] pieces = {
+				new Rook(color), new Knight(color), new Bishop(color), new Queen(color),
+				new King(color), new Bishop(color), new Knight(color), new Rook(color),
+				new Pawn(color), new Pawn(color), new Pawn(color), new Pawn(color),
+				new Pawn(color), new Pawn(color), new Pawn(color), new Pawn(color),
+			};
+			colorWithPieces.put(color, pieces);
+			
+		}
 		
-		allPieces[4] = new Pawn(players[0]);
-		allPieces[5] = new Pawn(players[0]);
-		allPieces[6] = new Pawn(players[0]);
-		allPieces[7] = new Pawn(players[0]);
-		allPieces[8] = new Pawn(players[0]);
-		allPieces[9] = new Pawn(players[0]);
-		allPieces[10] = new Pawn(players[0]);
-		allPieces[11] = new Pawn(players[0]);
+		return colorWithPieces;
 		
-		allPieces[12] = new Rook(players[1]);
-		allPieces[13] = new Rook(players[1]);
-		allPieces[14] = new Queen(players[1]);
-		allPieces[15] = new King(players[1]);
-		
-		allPieces[16] = new Pawn(players[1]);
-		allPieces[17] = new Pawn(players[1]);
-		allPieces[18] = new Pawn(players[1]);
-		allPieces[19] = new Pawn(players[1]);
-		allPieces[20] = new Pawn(players[1]);
-		allPieces[21] = new Pawn(players[1]);
-		allPieces[22] = new Pawn(players[1]);
-		allPieces[23] = new Pawn(players[1]);
-		
-		allPieces[24] = new Bishop(players[0]);
-		allPieces[25] = new Bishop(players[0]);
-		
-		allPieces[26] = new Bishop(players[1]);
-		allPieces[27] = new Bishop(players[1]);
-		
-		allPieces[28] = new Knight(players[0]);
-		allPieces[29] = new Knight(players[0]);
-		
-		allPieces[30] = new Knight(players[1]);
-		allPieces[31] = new Knight(players[1]);
-		
-		
-		return allPieces;
 	}
 
 	private Player[] initializePlayers(Board board) {

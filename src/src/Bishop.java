@@ -4,11 +4,11 @@ public class Bishop extends Piece {
 	public static final String UNICODE_PIECE_WHITE = "\u2657";
 	public static final String UNICODE_PIECE_BLACK = "\u265D";
 	
-	Bishop(Player player) {
-		super(player);
+	Bishop(Color color) {
+		super(color);
 		
 		String unicodePiece = Bishop.UNICODE_PIECE_WHITE;
-		if (player.getColor() == Color.BLACK) {
+		if (color == Color.BLACK) {
 			unicodePiece = Bishop.UNICODE_PIECE_BLACK;
 		}
 		this.setUnicodePiece(unicodePiece);

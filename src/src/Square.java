@@ -25,13 +25,22 @@ public class Square {
 		return this.piece;
 	}
 	
-	public void printCoordinate() {
-		System.out.print(coordinate.getPriteableCoordinate());
-		// System.out.print(coordinate.getColumn());
+
+	public void clean() {
+		setPiece(null);
 	}
 
-	public void removePiece() {
-		this.piece = null;
+	public void moveCotainedPieceTo(Square squareDestination) {
+		squareDestination.setPiece(this.piece);
+		this.clean();
+	}
+
+	public boolean containKing() {
+		return getPiece().isKing();
+	}
+
+	public Color getColorPiece() {
+		return getPiece().getColor();
 	}
 
 

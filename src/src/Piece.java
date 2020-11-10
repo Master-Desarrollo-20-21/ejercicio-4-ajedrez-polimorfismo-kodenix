@@ -2,11 +2,11 @@
 public abstract class Piece {
 	
 	private String unicodePiece;
-	private Player player;
 	private boolean placedOnBoard = false;
+	private Color color;
 	
-	Piece(Player player) {
-		this.player = player;
+	Piece(Color color) {
+		this.color = color;
 	}
 	
 	public abstract Coordinate[] getDefaultCoordinates();
@@ -33,7 +33,7 @@ public abstract class Piece {
 	}
 	
 	public Color getColor() {
-		return this.player.getColor();
+		return this.color;
 	}
 
 

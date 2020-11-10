@@ -4,11 +4,11 @@ public class Pawn extends Piece {
 	public static final String UNICODE_PIECE_WHITE = "\u2659";
 	public static final String UNICODE_PIECE_BLACK = "\u265F";
 	
-	Pawn(Player player) {
-		super(player);
+	Pawn(Color color) {
+		super(color);
 		
 		String unicodePiece = Pawn.UNICODE_PIECE_WHITE;
-		if (player.getColor() == Color.BLACK) {
+		if (color == Color.BLACK) {
 			unicodePiece = Pawn.UNICODE_PIECE_BLACK;
 		}
 		this.setUnicodePiece(unicodePiece);

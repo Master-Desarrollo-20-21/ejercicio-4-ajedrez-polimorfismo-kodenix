@@ -11,47 +11,38 @@ public class Movement {
 
 	public MatchResult complete(Board board, Color colorPlayer) {
 		Square squareOrigin = board.getSquare(origin);
-		if (squareOrigin.isEmpty() || squareOrigin.getPiece().getColor() != colorPlayer) {
+		Color colorOriginPiece = squareOrigin.getColorPiece();
+		
+		if (squareOrigin.isEmpty() || colorOriginPiece != colorPlayer) {
 			return MatchResult.INVALID;
 		}
 
 		Square squareDestination = board.getSquare(destination);
 
-		if (!squareDestination.isEmpty() 
-		&& squareOrigin.getPiece().getColor() == squareDestination.getPiece().getColor()) {
-			
+		if (!squareDestination.isEmpty()
+				&& colorOriginPiece == squareDestination.getColorPiece()) {
 			return MatchResult.INVALID;
-			
-		} 
+		}
 
 		if (!squareOrigin.getPiece().isValidRuleMove(origin, destination)) {
 			return MatchResult.INVALID;
 		} else {
+
+			squareOrigin.moveCotainedPieceTo(squareDestination);
 			
 			if (squareDestination.isEmpty()) {
-				squareDestination.removePiece();
-				squareDestination.setPiece(squareOrigin.getPiece());
-				squareOrigin.removePiece();
 				return MatchResult.EMPTY_SQUARE;
 			} else {
-				
-				if (squareDestination.getPiece().isKing()) {
+				if (squareDestination.containKing()) {
 					return MatchResult.CHECKMATE;
 				} else {
-					
-					squareDestination.removePiece();
-					squareDestination.setPiece(squareOrigin.getPiece());
-					squareOrigin.removePiece();
 					return MatchResult.CAPTURE;
-					
 				}
-				
-			}	
-			
-			
-			
+
+			}
+
 		}
-		
+
 	}
 
 }
