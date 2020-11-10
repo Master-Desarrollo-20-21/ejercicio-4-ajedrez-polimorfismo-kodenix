@@ -15,7 +15,6 @@ class Chess {
 		this.players = this.initializePlayers(board);
 		Map<Color, Piece[]> pieces = this.createPieces();
 		board.placePieces(pieces);
-
 	}
 
 	public void play() {

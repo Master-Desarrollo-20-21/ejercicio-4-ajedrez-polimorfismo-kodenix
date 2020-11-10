@@ -1,6 +1,6 @@
-@startuml ChessPublicView_v1
+@startuml ChessPublicView_v2_0_0
 
-	title Chess Public View V1.0.0
+	title Chess Public View v2.0.0
 
 	class Chess {
 		-Player[2] players
@@ -94,7 +94,8 @@
 	Chess *--> "2" Player
 
 	Player --> Board
-	Player o--> Color
+	Player --> Color
+	Piece --> Color
 	Player --> Coordinate
 	Board o--> "64" Square
 	Square o--> "0..1" Piece

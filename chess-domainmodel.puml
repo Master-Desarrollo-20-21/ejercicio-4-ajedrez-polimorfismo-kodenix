@@ -1,6 +1,6 @@
-@startuml ChessDomainModel_v1_0_1
+@startuml ChessDomainModel_v1_0_2
 
-	title Chess Domain Model Version 1.0.1
+	title Chess Domain Model Version 1.0.2
 
 	class Chess
 	
@@ -60,19 +60,11 @@
 
     Board *--> "8x8" Square
 
-	Player ..> "*" Movement
-	Player o--> Color
-	Player o--> "16" Piece
+	Player --> Color
+	Player --> "16" Piece
 	Player --> Destination
 	Player --> Board
 
-	/'Player *-- King
-	Player *-- Queen
-	Player *-- "2" Bishop
-	Player *-- "2" Knight
-	Player *-- "2" Rook
-	Player *-- "8" Pawn
-	'/
 	Player --> Target
 	Target --> Checkmate
 
@@ -89,12 +81,14 @@
 
 	Piece --> Color
 
+	Player ..> Movement
+	Movement --> Board
+	Movement --> Coordinate
 	Movement ..> Turn : change
 	Movement ..> "To" Destination
     Movement ..> "From" Square
 	Movement --> Piece
 	Movement o--> MatchResult
-	Movement --> Board
 
 	MatchResult ^-- Checkmate
 	MatchResult ^-- Capture

@@ -39,8 +39,10 @@ public class Player {
 			String destinationText = in.next();
 			Coordinate destination = Coordinate.getCoordinateFromSimbol(destinationText);
 
-			Movement movement = new Movement(origin, destination);
-			matchResult = movement.complete(board, this.getColor());
+			Coordinate[] coordinates = { origin, destination }; 
+
+			Movement movement = new Movement(coordinates, board, this.getColor());
+			matchResult = movement.getResult();
 		 	if (matchResult != MatchResult.INVALID) {
 				System.out.println("Result Match:" + matchResult);
 				if (matchResult == MatchResult.CHECKMATE) {
