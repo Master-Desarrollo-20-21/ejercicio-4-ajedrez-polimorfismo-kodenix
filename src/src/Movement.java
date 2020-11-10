@@ -11,16 +11,19 @@ public class Movement {
 
 	public MatchResult complete(Board board, Color colorPlayer) {
 		Square squareOrigin = board.getSquare(origin);
-		Color colorOriginPiece = squareOrigin.getColorPiece();
 		
-		if (squareOrigin.isEmpty() || colorOriginPiece != colorPlayer) {
+		if (squareOrigin.isEmpty() || squareOrigin.getColorPiece() != colorPlayer) {
+			return MatchResult.INVALID;
+		}
+		
+		if (squareOrigin.isEmpty() || squareOrigin.getColorPiece() != colorPlayer) {
 			return MatchResult.INVALID;
 		}
 
 		Square squareDestination = board.getSquare(destination);
 
 		if (!squareDestination.isEmpty()
-				&& colorOriginPiece == squareDestination.getColorPiece()) {
+				&& squareOrigin.getColorPiece() == squareDestination.getColorPiece()) {
 			return MatchResult.INVALID;
 		}
 

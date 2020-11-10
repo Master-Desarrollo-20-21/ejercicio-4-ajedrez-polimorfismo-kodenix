@@ -40,6 +40,7 @@ public class Square {
 	}
 
 	public Color getColorPiece() {
+		if (isEmpty()) return null;
 		return getPiece().getColor();
 	}
 
