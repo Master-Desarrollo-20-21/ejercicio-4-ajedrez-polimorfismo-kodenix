@@ -1,34 +1,25 @@
-@startuml ChessDomainModel_v1_0_2
+@startuml ChessDomainModel_v2_0_0
 
-	title Chess Domain Model Version 1.0.2
+	title Chess Domain Model Version 2.0.0
 
 	class Chess
-	
-	
-	
     class Square
 	class Empty
 	class Opponent
-    
     class Coordinate
     
 	together {
-		class Player	
-		class RuleMove
-	
-	}
-	
-		class Board
-		class Piece
 		
-	
-
-	
-		class Movement
-		class Turn
-		class RuleMove
+	}
+	class Player	
+	class ValidRuleMove
 	
 	
+	class Board
+	class Piece
+	class Movement
+	class Turn
+	class ValidRuleMove
 	class Pawn
 	class Rook
 	class Knight
@@ -38,85 +29,67 @@
 	class Color
 	class White
 	class Black
-	
-	
 	class Checkmate
 	class Capture
-
 	class Target
 	class Steps
 	class TypeStep
 	class OneStep
 	class Forward
-	class Backward
 	class ManySteps
 	class Destination
 	class Checkmate
+	class EmptySquare
+	class Invalid
 
 	Chess *--> "1" Turn
 	Chess *--> Board
 	Chess *--> "2" Player
 	Turn --> "1" Player
-
     Board *--> "8x8" Square
-
-	Player --> Color
-	Player --> "16" Piece
-	Player --> Destination
-	Player --> Board
-
+	Board *--> "32" Piece
+	Player o--> Color
+	'Player --> Board
 	Player --> Target
+	Player --> Coordinate
+	Player --> "*" Movement
 	Target --> Checkmate
-
-	Color <|-- White
-	Color <|-- Black
-
-	Piece *--> "1..*" RuleMove
-	Piece <|-- Pawn
-	Piece <|-- Bishop
-	Piece <|-- Knight
-	Piece <|-- Rook
-	Piece <|-- Queen
-	Piece <|-- King
-
-	Piece --> Color
-
-	Player ..> Movement
+	Color ^-- White
+	Color ^-- Black
+	Piece *--> "1..*" ValidRuleMove
+	Piece ^-- Pawn
+	Piece ^-- Bishop
+	Piece ^-- Knight
+	Piece ^-- Rook
+	Piece ^-- Queen
+	Piece ^-- King
+	Piece "16" o--> Color
+	Movement --> Square
 	Movement --> Board
-	Movement --> Coordinate
-	Movement ..> Turn : change
 	Movement ..> "To" Destination
     Movement ..> "From" Square
-	Movement --> Piece
-	Movement o--> MatchResult
-
+	'Movement --> Piece
+	Movement *--> MatchResult
 	MatchResult ^-- Checkmate
 	MatchResult ^-- Capture
+	MatchResult ^-- EmptySquare
+	MatchResult ^-- Invalid
 	Checkmate ..>  Opponent : "is King"
 	Capture ..>  Opponent : "is other Piece"
-
+	Square *--> Coordinate
+	Square ^-- Destination
 	Square o--> "0..1" Piece
-    Square <|-- Destination
-    Square *--> Coordinate
-
 	Coordinate *--> Row
 	Coordinate *--> Column
-
-	Destination <|-- Empty
-	Destination <|-- Opponent
-	'Opponent <|-- Target
-	'Target --> King	
-
-	RuleMove <|-- Horizontal
-	RuleMove <|-- Vertical
-	RuleMove <|-- Diagonal
-	RuleMove <|-- L
-
-	
+	Destination ^-- Empty
+	Destination ^-- Opponent	
+	ValidRuleMove ^-- Horizontal
+	ValidRuleMove ^-- Vertical
+	ValidRuleMove ^-- Diagonal
+	ValidRuleMove ^-- L
 	Steps *--> TypeStep
 	TypeStep ^-- OneStep
-		OneStep ^-- Forward
-		OneStep ^-- Backward
+	OneStep ^-- Forward
 	TypeStep ^-- ManySteps
 	Steps ^-- Horizontal
 	Steps ^-- Vertical
