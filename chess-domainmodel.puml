@@ -1,6 +1,6 @@
-@startuml ChessDomainModel_v2_0_0
+@startuml ChessDomainModel_v2_0_1
 
-	title Chess Domain Model Version 2.0.0
+	title Chess Domain Model Version 2.0.1
 
 	class Chess
     class Square
@@ -12,14 +12,14 @@
 		
 	}
 	class Player	
-	class ValidRuleMove
+	class RuleMove
 	
 	
 	class Board
 	class Piece
 	class Movement
 	class Turn
-	class ValidRuleMove
+	class RuleMove
 	class Pawn
 	class Rook
 	class Knight
@@ -40,7 +40,6 @@
 	class Destination
 	class Checkmate
 	class EmptySquare
-	class Invalid
 
 	Chess *--> "1" Turn
 	Chess *--> Board
@@ -49,14 +48,13 @@
     Board *--> "8x8" Square
 	Board *--> "32" Piece
 	Player o--> Color
-	'Player --> Board
 	Player --> Target
-	Player --> Coordinate
 	Player --> "*" Movement
+	Player --> "16" Piece
 	Target --> Checkmate
 	Color ^-- White
 	Color ^-- Black
-	Piece *--> "1..*" ValidRuleMove
+	Piece *--> "1..*" RuleMove
 	Piece ^-- Pawn
 	Piece ^-- Bishop
 	Piece ^-- Knight
@@ -64,18 +62,17 @@
 	Piece ^-- Queen
 	Piece ^-- King
 	Piece "16" o--> Color
-	Movement --> Square
 	Movement --> Board
 	Movement ..> "To" Destination
     Movement ..> "From" Square
-	'Movement --> Piece
+	Movement --> Piece : move
 	Movement *--> MatchResult
-	MatchResult ^-- Checkmate
+	Movement ..> Turn : change
 	MatchResult ^-- Capture
 	MatchResult ^-- EmptySquare
-	MatchResult ^-- Invalid
-	Checkmate ..>  Opponent : "is King"
-	Capture ..>  Opponent : "is other Piece"
+	MatchResult ^-- NotAllowed
+	Capture ^-- Checkmate
+	Checkmate ..>  King
 	Square *--> Coordinate
 	Square ^-- Destination
 	Square o--> "0..1" Piece
@@ -83,10 +80,10 @@
 	Coordinate *--> Column
 	Destination ^-- Empty
 	Destination ^-- Opponent	
-	ValidRuleMove ^-- Horizontal
-	ValidRuleMove ^-- Vertical
-	ValidRuleMove ^-- Diagonal
-	ValidRuleMove ^-- L
+	RuleMove ^-- Horizontal
+	RuleMove ^-- Vertical
+	RuleMove ^-- Diagonal
+	RuleMove ^-- L
 	Steps *--> TypeStep
 	TypeStep ^-- OneStep
 	OneStep ^-- Forward
