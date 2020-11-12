@@ -100,8 +100,7 @@ public class Coordinate {
 	}
 	
 	public boolean hasOneStepHorizontalDirectionWith(Coordinate destination) {
-		int diferencieSteps = Math.abs(this.column - destination.getColumn()); 
-		return this.hasHorizontalDirectionWith(destination) &&  diferencieSteps == 1 ;
+		return this.hasHorizontalDirectionWith(destination) &&  this.isOneSteep(this.row, destination.getRow());
 	}
 
 	public boolean hasDiagonalDirectionWith(Coordinate destination) {
@@ -113,11 +112,13 @@ public class Coordinate {
 		
 	}
 	
-	public boolean hasOneStepDiagonalDirectionWith(Coordinate destination) {
-		int diferencieSteps = Math.abs(this.row - destination.getRow()); 
-		return this.hasDiagonalDirectionWith(destination) &&  diferencieSteps == 1 ;
+	public boolean hasOneStepDiagonalDirectionWith(Coordinate destination) { 
+		return this.hasDiagonalDirectionWith(destination) &&  this.isOneSteep(this.row, destination.getRow());
 		
 	}
 	
+	private boolean isOneSteep(int origin, int destination) {
+		return Math.abs(destination-origin)==1;
+	}
 	
 }
