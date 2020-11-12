@@ -41,9 +41,6 @@ public class Coordinate {
 		return row+column;
 	}
 	
-	
-
-	
 	private static int rowPositionForSearch;
 	private static int columnPositionForSearch;
 	public static Map<Integer, String> rowsSimbol = new HashMap<Integer, String>();
@@ -89,25 +86,25 @@ public class Coordinate {
 		
 	}
 
-	public boolean isVerticalDirection(Coordinate coordinate) {
-		return this.row == coordinate.getRow();
-	}
-	
-	public boolean isVerticalDirectionOneStep(Coordinate destination) {
-		int diferencieSteps = Math.abs(this.row - destination.getRow()); 
-		return this.isVerticalDirection(destination) &&  diferencieSteps == 1 ;
-	}
-	
-	public boolean isHorizontalDirection(Coordinate coordinate) {
+	public boolean hasVerticalDirectionWith(Coordinate coordinate) {
 		return this.column == coordinate.getColumn();
 	}
 	
-	public boolean isHorizontalDirectionOneStep(Coordinate destination) {
+	public boolean hasOneStepVerticalDirectionWith(Coordinate destination) {
+		int diferencieSteps = Math.abs(this.row - destination.getRow()); 
+		return this.hasVerticalDirectionWith(destination) &&  diferencieSteps == 1 ;
+	}
+	
+	public boolean hasHorizontalDirectionWith(Coordinate coordinate) {
+		return this.row == coordinate.getRow();
+	}
+	
+	public boolean hasOneStepHorizontalDirectionWith(Coordinate destination) {
 		int diferencieSteps = Math.abs(this.column - destination.getColumn()); 
-		return this.isHorizontalDirection(destination) &&  diferencieSteps == 1 ;
+		return this.hasHorizontalDirectionWith(destination) &&  diferencieSteps == 1 ;
 	}
 
-	public boolean isDiagonalDirection(Coordinate destination) {
+	public boolean hasDiagonalDirectionWith(Coordinate destination) {
 		int destinationRow = destination.getRow();
 		int destinationColumn = destination.getColumn();
 		
@@ -116,9 +113,9 @@ public class Coordinate {
 		
 	}
 	
-	public boolean isDiagonalDirectionOneStep(Coordinate destination) {
+	public boolean hasOneStepDiagonalDirectionWith(Coordinate destination) {
 		int diferencieSteps = Math.abs(this.row - destination.getRow()); 
-		return this.isDiagonalDirection(destination) &&  diferencieSteps == 1 ;
+		return this.hasDiagonalDirectionWith(destination) &&  diferencieSteps == 1 ;
 		
 	}
 	

@@ -13,42 +13,10 @@ public class Pawn extends Piece {
 		}
 		this.setUnicodePiece(unicodePiece);
 	}
-
-	@Override
-	public Coordinate[] getDefaultCoordinates() {
-		
-		Coordinate[] coordinates = new Coordinate[8];
- 		
-		if (this.getColor() == Color.WHITE) {
-			
-			coordinates[0] = new Coordinate('2', 'a');
-			coordinates[1] = new Coordinate('2', 'b');
-			coordinates[2] = new Coordinate('2', 'c');
-			coordinates[3] = new Coordinate('2', 'd');
-			coordinates[4] = new Coordinate('2', 'e');
-			coordinates[5] = new Coordinate('2', 'f');
-			coordinates[6] = new Coordinate('2', 'g');
-			coordinates[7] = new Coordinate('2', 'h');
-		
-		} else {
-			
-			coordinates[0] = new Coordinate('7', 'a');
-			coordinates[1] = new Coordinate('7', 'b');
-			coordinates[2] = new Coordinate('7', 'c');
-			coordinates[3] = new Coordinate('7', 'd');
-			coordinates[4] = new Coordinate('7', 'e');
-			coordinates[5] = new Coordinate('7', 'f');
-			coordinates[6] = new Coordinate('7', 'g');
-			coordinates[7] = new Coordinate('7', 'h');
-			
-		}
-		
-		return coordinates;
-	}
 	
 	@Override
-	public boolean isValidRuleMove(Coordinate origin, Coordinate destination) {
-		return origin.isVerticalDirectionOneStep(destination);
+	public boolean isValidMoveRule(Coordinate origin, Coordinate destination) {
+		return origin.hasOneStepVerticalDirectionWith(destination);
 	}
 	
 	

@@ -9,40 +9,23 @@ public class Player {
 		this.color = color;
 	}
 	
-	private void setWinner() {
-		this.winner = true;
-	}
-
 	public boolean isWinner() {
 		return this.winner;
-	}
-
-	public void sayWinner() {
-		System.out.println("I am Winner!!!!!!!!!!!");
 	}
 
 	public Color getColor() {
 		return this.color;
 	}
 
-	public void makeMove(Board board) {
+	public void playTurn(Board board) {
 		
 		MatchResult matchResult;
 		Scanner in = new Scanner(System.in);
 		do {
-			
-			System.out.println("Indique coordenada de origen:");
-			String originText = in.next();			
-			Coordinate origin = Coordinate.getCoordinateFromSimbol(originText);
-
-			System.out.println("Indique coordenada de destino:");
-			String destinationText = in.next();
-			Coordinate destination = Coordinate.getCoordinateFromSimbol(destinationText);
-
-			Coordinate[] coordinates = { origin, destination }; 
-
-			Movement movement = new Movement(coordinates, board, this.getColor());
-			matchResult = movement.getResult();
+			Coordinate origin = readCoordinateWithMessage("Indique coordenada de origen:");
+			Coordinate destination = readCoordinateWithMessage("Indique coordenada de destino:");
+			Movement movement = new Movement(origin, destination);
+			matchResult = movement.performe(board, this.getColor());
 		 	if (matchResult != MatchResult.INVALID) {
 				System.out.println("Result Match:" + matchResult);
 				if (matchResult == MatchResult.CHECKMATE) {
@@ -53,7 +36,18 @@ public class Player {
 			} 
 		} while (matchResult == MatchResult.INVALID);
 		
-		
+	}
+
+	private Coordinate readCoordinateWithMessage(String message) {
+		System.out.println(message);
+		Scanner sc = new Scanner(System.in);
+		String coordinateText =  sc.next();			
+		Coordinate coordinate = Coordinate.getCoordinateFromSimbol(coordinateText);
+		return coordinate;
+	}
+
+	private void setWinner() {
+		this.winner = true;
 	}
 
 }

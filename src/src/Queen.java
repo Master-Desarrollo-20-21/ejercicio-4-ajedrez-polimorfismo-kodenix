@@ -13,26 +13,11 @@ public class Queen extends Piece {
 		}
 		this.setUnicodePiece(unicodePiece);
 	}
-
-	@Override
-	public Coordinate[] getDefaultCoordinates() {
-		
-		Coordinate[] coordinates = new Coordinate[1];
- 		
-		if (this.getColor() == Color.WHITE) {
-			coordinates[0] = new Coordinate('1', 'd');
-		} else {
-			coordinates[0] = new Coordinate('8', 'd');
-		}
-		
-		return coordinates;
-		
-	}
 	
 	@Override
-	public boolean isValidRuleMove(Coordinate origin, Coordinate destination) {
-		return origin.isHorizontalDirection(destination) || origin.isVerticalDirection(destination) ||
-				origin.isDiagonalDirection(destination);
+	public boolean isValidMoveRule(Coordinate origin, Coordinate destination) {
+		return origin.hasHorizontalDirectionWith(destination) || origin.hasVerticalDirectionWith(destination) ||
+				origin.hasDiagonalDirectionWith(destination);
 	}
 	
 	

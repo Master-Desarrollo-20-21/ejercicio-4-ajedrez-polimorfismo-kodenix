@@ -13,25 +13,11 @@ public class King extends Piece {
 		}
 		this.setUnicodePiece(unicodePiece);
 	}
-
-	@Override
-	public Coordinate[] getDefaultCoordinates() {
-		
-		Coordinate[] coordinates = new Coordinate[1];
- 		
-		if (this.getColor() == Color.WHITE) {
-			coordinates[0] = new Coordinate('1', 'e');
-		} else {
-			coordinates[0] = new Coordinate('8', 'e');
-		}
-		
-		return coordinates;
-	}
 	
 	@Override
-	public boolean isValidRuleMove(Coordinate origin, Coordinate destination) {
-		return origin.isHorizontalDirectionOneStep(destination) || origin.isVerticalDirectionOneStep(destination)
-				|| origin.isDiagonalDirectionOneStep(destination);
+	public boolean isValidMoveRule(Coordinate origin, Coordinate destination) {
+		return origin.hasOneStepHorizontalDirectionWith(destination) || origin.hasOneStepVerticalDirectionWith(destination)
+				|| origin.hasOneStepDiagonalDirectionWith(destination);
 	}
 
 	@Override

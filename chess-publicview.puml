@@ -1,6 +1,6 @@
-@startuml ChessPublicView_v2_0_1
+@startuml ChessPublicView_v2_0_2
 
-	title Chess Public View v2.0.1
+	title Chess Public View v2.0.2
 
 	class Chess {
 		+play()
@@ -14,7 +14,7 @@
 	class Player {
 		+boolean isWinner()
 		+Color getColor()
-		+void movePiece(Coordinate, Coordinate, Board)
+		+void playTurn(Board)
 	}
 
 	enum Color {
@@ -41,23 +41,27 @@
 		+Coordinate(String coordinateText)
 		+int getRowNumber()
 		+int getColumNumber()
-		+boolean isVerticalDirectionWith(Coordinate)
-		+boolean isOneStepVerticalDirectionWith(Coordinate)
-		+boolean isDiagonalDirection(Coordinate)
-		+boolean isOneStepDiagonalDirection(Coordinate)
+		+boolean hasVerticalDirectionWith(Coordinate)
+		+boolean hasOneStepVerticalDirectionWith(Coordinate)
+		+boolean hasHorizontalDirectionWith(Coordinate)
+		+boolean hasOneStepHorizontalDirectionWith(Coordinate)
+		+boolean hasDiagonalDirectionWith(Coordinate)
+		+boolean hasOneStepDiagonalDirectionWith(Coordinate)
 	}
 
 	class Square {
-		+Square()		
-		+void removePiece()
+		+Square(Coordinate)		
+		+void clean()
 		+void putPiece(Piece)
 		+boolean isEmpty()
 		+Piece getPiece()
+		+boolean isValidMoveRuleForContainedPiece()
+		+boolean containKing()
 	}
 
 	class Movement {
-		+Movement(Coordinate[], Board, Color currentUserColor)
-		+MatchResult getResult()
+		+Movement(Coordinate origin, Coordinate destination)
+		+MatchResult perform(Board, Color currentUserColor)
 	}
 
 	enum MatchResult {

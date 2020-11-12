@@ -7,14 +7,12 @@ class Chess {
 
 	private Player[] players = new Player[TOTAL_PLAYERS];
 	private Board board;
-	private int turn;
+	private Turn turn;
 
 	Chess() {
-		this.turn = 0;
+		this.turn = new Turn();
 		this.board = new Board();
-		this.players = this.initializePlayers(board);
-		Map<Color, Piece[]> pieces = this.createPieces();
-		board.placePieces(pieces);
+		board.placePieces(this.initializePieces());
 	}
 
 	public void play() {
@@ -23,25 +21,23 @@ class Chess {
 		System.out.println("=====================================");
 		System.out.println("[[ Example coordinate: 5c, 1a, not CamelCase ]]");
 		do {
-			Player currentPlayer = this.players[turn];
-			System.out.println("Turn for Player: " + currentPlayer.getColor());
+			Player currentPlayer = this.turn.getCurrentPlayer();
+			Color currentPLayerColor = currentPlayer.getColor();
+			System.out.println("Turn for Player: " + currentPLayerColor);
 			board.show();
-			currentPlayer.makeMove(board);
+
+			currentPlayer.playTurn(board);
 
 			if (currentPlayer.isWinner()) {
-				System.out.println("Player " + currentPlayer.getColor() + " is Winner!!");
+				System.out.println("Player " + currentPLayerColor + " is Winner!!");
 			} else {
-				this.changeTurn();
+				this.turn.change();
 			}
-		} while (!this.players[this.turn].isWinner());
+		} while (!this.turn.getCurrentPlayer().isWinner());
 
 	}
 
-	private void changeTurn() {
-		this.turn = (this.turn + 1) % 2;
-	}
-
-	private Map<Color, Piece[]> createPieces() {
+	private Map<Color, Piece[]> initializePieces() {
 
 		Map<Color, Piece[]> colorWithPieces = new HashMap<Color, Piece[]>();
 
@@ -57,13 +53,6 @@ class Chess {
 
 		return colorWithPieces;
 
-	}
-
-	private Player[] initializePlayers(Board board) {
-		Player[] players = new Player[TOTAL_PLAYERS];
-		players[0] = new Player(Color.WHITE);
-		players[1] = new Player(Color.BLACK);
-		return players;
 	}
 
 	public static void main(String[] args) {
