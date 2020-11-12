@@ -42,7 +42,7 @@ public class Player {
 		System.out.println(message);
 		Scanner sc = new Scanner(System.in);
 		String coordinateText =  sc.next();			
-		Coordinate coordinate = Coordinate.getCoordinateFromSimbol(coordinateText);
+		Coordinate coordinate = new Coordinate(coordinateText);
 		return coordinate;
 	}
 
