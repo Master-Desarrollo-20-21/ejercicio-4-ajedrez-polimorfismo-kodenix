@@ -3,9 +3,6 @@ import java.util.Map;
 
 class Chess {
 
-	private static final int TOTAL_PLAYERS = 2;
-
-	private Player[] players = new Player[TOTAL_PLAYERS];
 	private Board board;
 	private Turn turn;
 
