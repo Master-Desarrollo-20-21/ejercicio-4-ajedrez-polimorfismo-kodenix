@@ -13,30 +13,10 @@ public class Rook extends Piece {
 		}
 		this.setUnicodePiece(unicodePiece);
 	}
-
-	@Override
-	public Coordinate[] getDefaultCoordinates() {
-		
-		Coordinate[] coordinates = new Coordinate[2];
- 		
-		if (this.getColor() == Color.WHITE) {
-			
-			coordinates[0] = new Coordinate('1', 'a');
-			coordinates[1] = new Coordinate('1', 'h');
-		
-		} else {
-			
-			coordinates[0] = new Coordinate('8', 'a');
-			coordinates[1] = new Coordinate('8', 'h');
-			
-		}
-		
-		return coordinates;
-	}
 	
 	@Override
-	public boolean isValidRuleMove(Coordinate origin, Coordinate destination) {
-		return origin.isHorizontalDirection(destination) || origin.isVerticalDirection(destination);
+	public boolean isValidMoveRule(Coordinate origin, Coordinate destination) {
+		return origin.hasHorizontalDirectionWith(destination) || origin.hasVerticalDirectionWith(destination);
 	}
 	
 	

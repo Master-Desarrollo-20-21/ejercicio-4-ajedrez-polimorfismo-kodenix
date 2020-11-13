@@ -13,25 +13,9 @@ public class Knight extends Piece {
 		}
 		this.setUnicodePiece(unicodePiece);
 	}
-
-	@Override
-	public Coordinate[] getDefaultCoordinates() {
-		
-		Coordinate[] coordinates = new Coordinate[2];
- 		
-		if (this.getColor() == Color.WHITE) {
-			coordinates[0] = new Coordinate('1', 'b');
-			coordinates[1] = new Coordinate('1', 'g');
-		} else {
-			coordinates[0] = new Coordinate('8', 'b');
-			coordinates[1] = new Coordinate('8', 'g');
-		}
-		
-		return coordinates;
-	}
 	
 	@Override
-	public boolean isValidRuleMove(Coordinate origin, Coordinate destination) {
+	public boolean isValidMoveRule(Coordinate origin, Coordinate destination) {
 		return true;
 	}
 	

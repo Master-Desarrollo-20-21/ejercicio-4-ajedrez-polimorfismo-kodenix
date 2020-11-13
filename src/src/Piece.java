@@ -9,8 +9,7 @@ public abstract class Piece {
 		this.color = color;
 	}
 	
-	public abstract Coordinate[] getDefaultCoordinates();
-	public abstract boolean isValidRuleMove(Coordinate origin, Coordinate destination);
+	public abstract boolean isValidMoveRule(Coordinate origin, Coordinate destination);
 	
 	protected void setUnicodePiece(String unicodePiece) {
 		this.unicodePiece = unicodePiece;

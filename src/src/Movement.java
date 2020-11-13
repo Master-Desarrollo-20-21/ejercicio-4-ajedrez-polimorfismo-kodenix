@@ -3,35 +3,30 @@ public class Movement {
 
 	private Coordinate origin;
 	private Coordinate destination;
-	private Board board;
-	private Color colorPlayer;
 
-	public Movement(Coordinate[] coordinates, Board board, Color colorPlayer) {
-		this.origin = coordinates[0];
-		this.destination = coordinates[1];
-		this.board = board;
-		this.colorPlayer = colorPlayer;
+	public Movement(Coordinate origin, Coordinate destination) {
+		this.origin = origin;
+		this.destination = destination;
 	}
 
-	public MatchResult getResult() {
+	public MatchResult performe(Board board, Color colorPlayer) {
+				
 		Square squareOrigin = board.getSquare(origin);
+		Square squareDestination = board.getSquare(destination);		
 		
-		if (squareOrigin.isEmpty() || squareOrigin.getColorPiece() != colorPlayer) {
-			return MatchResult.INVALID;
-		}
-		
-		if (squareOrigin.isEmpty() || squareOrigin.getColorPiece() != colorPlayer) {
+		if (squareOrigin.isEmpty()) {
 			return MatchResult.INVALID;
 		}
 
-		Square squareDestination = board.getSquare(destination);
-
-		if (!squareDestination.isEmpty()
-				&& squareOrigin.getColorPiece() == squareDestination.getColorPiece()) {
+		if (!squareOrigin.isEmpty() && squareOrigin.getPiece().getColor() != colorPlayer) {
 			return MatchResult.INVALID;
 		}
 
-		if (!squareOrigin.getPiece().isValidRuleMove(origin, destination)) {
+		if (!squareDestination.isEmpty() && squareOrigin.getPiece().getColor() == squareDestination.getPiece().getColor()) {
+			return MatchResult.INVALID;
+		}
+
+		if (!squareOrigin.isValidMoveRuleForContainedPiece(origin, destination)) {
 			return MatchResult.INVALID;
 		} else {
 
@@ -49,7 +44,6 @@ public class Movement {
 			}
 
 		}
-
 	}
 
 }

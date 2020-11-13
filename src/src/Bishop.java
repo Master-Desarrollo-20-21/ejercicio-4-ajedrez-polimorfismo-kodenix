@@ -13,26 +13,10 @@ public class Bishop extends Piece {
 		}
 		this.setUnicodePiece(unicodePiece);
 	}
-
-	@Override
-	public Coordinate[] getDefaultCoordinates() {
-		
-		Coordinate[] coordinates = new Coordinate[2];
- 		
-		if (this.getColor() == Color.WHITE) {
-			coordinates[0] = new Coordinate('1', 'c');
-			coordinates[1] = new Coordinate('1', 'f');
-		} else {
-			coordinates[0] = new Coordinate('8', 'c');
-			coordinates[1] = new Coordinate('8', 'f');
-		}
-		
-		return coordinates;
-	}
 	
 	@Override
-	public boolean isValidRuleMove(Coordinate origin, Coordinate destination) {
-		return origin.isDiagonalDirection(destination);
+	public boolean isValidMoveRule(Coordinate origin, Coordinate destination) {
+		return origin.hasDiagonalDirectionWith(destination);
 	}
 	
 	

@@ -8,12 +8,7 @@ public class Square {
 		this.coordinate = coordinate;
 	}
 	
-	Square(Coordinate coordinate, Piece piece) {
-		this.coordinate = coordinate;
-		this.piece = piece;
-	}
-	
-	public void setPiece(Piece piece) {
+	public void putPiece(Piece piece) {
 		this.piece = piece;
 	}
 	
@@ -25,25 +20,21 @@ public class Square {
 		return this.piece;
 	}
 	
-
 	public void clean() {
-		setPiece(null);
+		putPiece(null);
 	}
 
 	public void moveCotainedPieceTo(Square squareDestination) {
-		squareDestination.setPiece(this.piece);
+		squareDestination.putPiece(this.piece);
 		this.clean();
 	}
 
 	public boolean containKing() {
-		return getPiece().isKing();
+		return this.getPiece().isKing();
 	}
 
-	public Color getColorPiece() {
-		if (isEmpty()) return null;
-		return getPiece().getColor();
+	public boolean isValidMoveRuleForContainedPiece(Coordinate origin, Coordinate destination) {
+		return this.getPiece().isValidMoveRule(origin, destination);
 	}
-
-
 
 }
