@@ -33,11 +33,11 @@ public class Player {
 			
 			System.out.println("Indique coordenada de origen:");
 			String originText = in.next();			
-			Coordinate origin = Coordinate.getCoordinateFromSimbol(originText);
+			Coordinate origin = new Coordinate(originText);
 
 			System.out.println("Indique coordenada de destino:");
 			String destinationText = in.next();
-			Coordinate destination = Coordinate.getCoordinateFromSimbol(destinationText);
+			Coordinate destination = new Coordinate(destinationText);
 
 			Coordinate[] coordinates = { origin, destination }; 
 

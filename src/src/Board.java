@@ -78,7 +78,7 @@ public class Board {
 	private void printColumHeadBoard() {
 		System.out.print("  | ");
 		for (int i=0; i < 8; i++) {
-			System.out.print(Coordinate.columnsSimbol.get(i));
+			System.out.print((char) (i+Coordinate.ASCII_a));
 			System.out.print("  | ");
 			
 		}
