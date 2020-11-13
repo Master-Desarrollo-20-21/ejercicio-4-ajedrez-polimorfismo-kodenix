@@ -1,3 +1,4 @@
+import java.util.HashMap;
 import java.util.Map;
 
 public class Board {
@@ -5,12 +6,15 @@ public class Board {
 	final int NUM_PLAYER_ROWS_FOR_PIECE = 2;
 	final int NUM_PLAYER_COLUMNS_FOR_PIECE = 8;
 	
-	Square[][] squares = new Square[8][8];
+	private Square[][] squares = new Square[8][8];
+	
 
 	public Board() {
 		this.generateSquares();
+		Map<Color, Piece[]> colorPieces = this.initializePieces();
+		this.placePieces(colorPieces);
 	}
-
+	
 	public void placePieces(Map<Color, Piece[]> colorPieces) {
 			
 		for (Color color: colorPieces.keySet()) {
@@ -30,6 +34,24 @@ public class Board {
 	
 	}
 
+	private Map<Color, Piece[]> initializePieces() {
+
+		Map<Color, Piece[]> colorWithPieces = new HashMap<Color, Piece[]>();
+
+		for (Color color : Color.values()) {
+
+			Piece[] pieces = { new Rook(color), new Knight(color), new Bishop(color), new Queen(color), new King(color),
+					new Bishop(color), new Knight(color), new Rook(color), new Pawn(color), new Pawn(color),
+					new Pawn(color), new Pawn(color), new Pawn(color), new Pawn(color), new Pawn(color),
+					new Pawn(color), };
+			colorWithPieces.put(color, pieces);
+
+		}
+
+		return colorWithPieces;
+
+	}
+	
 	private void generateSquares() {
 		for (int i=0; i < squares.length; i++) {
 			for (int j=0; j < squares[i].length; j++) {

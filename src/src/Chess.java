@@ -9,7 +9,7 @@ class Chess {
 	Chess() {
 		this.turn = new Turn();
 		this.board = new Board();
-		board.placePieces(this.initializePieces());
+		
 	}
 
 	public void play() {
@@ -34,23 +34,6 @@ class Chess {
 
 	}
 
-	private Map<Color, Piece[]> initializePieces() {
-
-		Map<Color, Piece[]> colorWithPieces = new HashMap<Color, Piece[]>();
-
-		for (Color color : Color.values()) {
-
-			Piece[] pieces = { new Rook(color), new Knight(color), new Bishop(color), new Queen(color), new King(color),
-					new Bishop(color), new Knight(color), new Rook(color), new Pawn(color), new Pawn(color),
-					new Pawn(color), new Pawn(color), new Pawn(color), new Pawn(color), new Pawn(color),
-					new Pawn(color), };
-			colorWithPieces.put(color, pieces);
-
-		}
-
-		return colorWithPieces;
-
-	}
 
 	public static void main(String[] args) {
 		Chess chess = new Chess();
