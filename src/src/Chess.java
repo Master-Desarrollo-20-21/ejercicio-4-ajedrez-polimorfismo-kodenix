@@ -1,5 +1,3 @@
-import java.util.HashMap;
-import java.util.Map;
 
 class Chess {
 
@@ -13,8 +11,6 @@ class Chess {
 		this.turn = 0;
 		this.board = new Board();
 		this.players = this.initializePlayers(board);
-		Map<Color, Piece[]> pieces = this.createPieces();
-		board.placePieces(pieces);
 	}
 
 	public void play() {
@@ -39,24 +35,6 @@ class Chess {
 
 	private void changeTurn() {
 		this.turn = (this.turn + 1) % 2;
-	}
-
-	private Map<Color, Piece[]> createPieces() {
-
-		Map<Color, Piece[]> colorWithPieces = new HashMap<Color, Piece[]>();
-
-		for (Color color : Color.values()) {
-
-			Piece[] pieces = { new Rook(color), new Knight(color), new Bishop(color), new Queen(color), new King(color),
-					new Bishop(color), new Knight(color), new Rook(color), new Pawn(color), new Pawn(color),
-					new Pawn(color), new Pawn(color), new Pawn(color), new Pawn(color), new Pawn(color),
-					new Pawn(color), };
-			colorWithPieces.put(color, pieces);
-
-		}
-
-		return colorWithPieces;
-
 	}
 
 	private Player[] initializePlayers(Board board) {

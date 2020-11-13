@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 public class Board {
@@ -6,21 +8,23 @@ public class Board {
 
 	public Board() {
 		this.generateSquares();
+		Map<Color, ArrayList<Piece>> pieces = this.createPieces();
+		this.placePieces(pieces);
 	}
 
-	public void placePieces(Map<Color, Piece[]> pieces) {
+	private void placePieces(Map<Color, ArrayList<Piece>> pieces) {
 		
 		for (Color color: pieces.keySet()) {
 			
-			Piece[] pieceColection = pieces.get(color);
+			ArrayList<Piece> pieceColection = pieces.get(color);
 			
-			for (int i=0; i < pieceColection.length; i++) {
-				Coordinate[] coordinates = pieceColection[i].getDefaultCoordinates();
+			for (Piece piece:pieceColection) {
+				Coordinate[] coordinates = piece.getDefaultCoordinates();
 				
 				for (int j=0; j < coordinates.length; j++) {
 					Square square = this.getSquare(coordinates[j]);
-					if (!pieceColection[i].isPlacedOnboard() && square.isEmpty()) {
-						square.setPiece(pieceColection[i]);
+					if (!piece.isPlacedOnboard() && square.isEmpty()) {
+						square.setPiece(piece);
 					}
 				}
 			}
@@ -29,6 +33,28 @@ public class Board {
 		
 		
 	}
+	
+	private Map<Color, ArrayList<Piece>> createPieces() {
+		Map<Color, ArrayList<Piece>> colorWithPieces = new HashMap<Color, ArrayList<Piece>>();
+
+		for (Color color : Color.values()) {
+			ArrayList<Piece> pieces=new ArrayList<Piece>();
+			for (int i=0;i<8;i++) {
+				pieces.add(new Pawn(color));
+			}
+			for (int i=0;i<2;i++) {
+				pieces.add(new Rook(color));
+				pieces.add(new Knight(color));
+				pieces.add(new Bishop(color));
+			}
+			pieces.add(new Queen(color));
+			pieces.add(new King(color));
+			colorWithPieces.put(color, pieces);
+		}
+
+		return colorWithPieces;
+	}
+	
 
 	private void generateSquares() {
 		for (int i=0; i < squares.length; i++) {
