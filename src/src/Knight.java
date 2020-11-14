@@ -16,7 +16,8 @@ public class Knight extends Piece {
 	
 	@Override
 	public boolean isValidMoveRule(Coordinate origin, Coordinate destination) {
-		return true;
+		return origin.isSameDiferenceSteeps(origin.getRow(), destination.getRow(), 1) && origin.isSameDiferenceSteeps(origin.getColumn(), destination.getColumn(), 2)
+				|| origin.isSameDiferenceSteeps(origin.getRow(), destination.getRow(), 2) && origin.isSameDiferenceSteeps(origin.getColumn(), destination.getColumn(), 1);
 	}
 	
 	

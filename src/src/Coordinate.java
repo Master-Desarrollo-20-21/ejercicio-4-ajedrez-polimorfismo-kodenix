@@ -1,8 +1,8 @@
 
 public class Coordinate {
 	
-	private final int ASCII_a=97;
-	private final int ASCII_1=49;
+	public static final int ASCII_a=97;
+	public static final int ASCII_1=49;
 	private int row;
 	private int column;
 
@@ -65,9 +65,13 @@ public class Coordinate {
 	private boolean isOneSteep(int origin, int destination) {
 		return Math.abs(destination-origin)==1;
 	}
+	
+	public boolean isSameDiferenceSteeps(int numberRowOrigin, int numberRowDestination, int awaitedSteeps) {
+		return Math.abs(numberRowOrigin - numberRowDestination) == awaitedSteeps;
+	}
 
 	public static char getTextSimbolFrom(int number) {
-		char asciiText = ((char) (number + 97));
+		char asciiText = ((char) (number + ASCII_a));
 		return asciiText;
 	}
 	
