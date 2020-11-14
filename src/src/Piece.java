@@ -19,6 +19,10 @@ public abstract class Piece {
 		return false;
 	}
 	
+	protected boolean isKnight() {
+		return false;
+	}
+	
 	public String getFigure() {
 		return this.unicodePiece;
 	}

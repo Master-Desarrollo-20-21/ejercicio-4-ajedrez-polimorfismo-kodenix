@@ -20,5 +20,9 @@ public class Knight extends Piece {
 				|| origin.isSameDiferenceSteeps(origin.getRow(), destination.getRow(), 2) && origin.isSameDiferenceSteeps(origin.getColumn(), destination.getColumn(), 1);
 	}
 	
+	@Override
+	protected boolean isKnight() {
+		return true;
+	}
 	
 }
