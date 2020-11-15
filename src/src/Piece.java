@@ -23,6 +23,10 @@ public abstract class Piece {
 		return false;
 	}
 	
+	protected boolean isPawn() {
+		return false;
+	}
+	
 	public String getFigure() {
 		return this.unicodePiece;
 	}

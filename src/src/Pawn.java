@@ -14,6 +14,10 @@ public class Pawn extends Piece {
 		this.setUnicodePiece(unicodePiece);
 	}
 	
+	protected boolean isPawn() {
+		return true;
+	}
+	
 	@Override
 	public boolean isValidMoveRule(Coordinate origin, Coordinate destination) {
 		return origin.hasOneStepVerticalDirectionWith(destination) 
