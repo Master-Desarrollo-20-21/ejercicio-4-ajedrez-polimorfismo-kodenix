@@ -10,12 +10,22 @@ public class Movement {
 	}
 
 	public MatchResult performe(Board board, Color colorPlayer) {
+		
 		if (thereIsPiece(board)) {
 			return MatchResult.INVALID;
 		}		
 		Square squareOrigin = board.getSquare(origin);
 		Square squareDestination = board.getSquare(destination);		
 
+		if (squareOrigin.getPiece().isPawn()) {
+			if (origin.hasOneStepDiagonalDirectionWith(destination) 
+					&& !squareDestination.isEmpty()
+					&& squareDestination.getPiece().getColor()!= colorPlayer) {
+				squareOrigin.moveCotainedPieceTo(squareDestination);
+				return MatchResult.CAPTURE;
+			}
+		}
+		
 		if (squareOrigin.isEmpty()) {
 			return MatchResult.INVALID;
 		}
