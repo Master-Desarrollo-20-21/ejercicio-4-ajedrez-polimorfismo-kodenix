@@ -82,7 +82,7 @@ public class Movement {
 		if (distance==0) {
 			return 0;
 		}else {
-			if (distance<1) {
+			if (distance<0) {
 				return -1;
 			}else {
 				return 1;
